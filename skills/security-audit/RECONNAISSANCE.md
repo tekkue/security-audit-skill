@@ -38,6 +38,7 @@ Return trust boundaries and control locations with repository-relative file:line
 Inventory every source-visible place external or lower-trust input enters:
 - HTTP/browser, RPC/message/protocol, files/archive/document, CLI/env/config, plugins/dependencies/CI, cloud events/IAM selectors, model context/tool arguments, mobile/deep-link/webview, and local IPC.
 For each surface, follow major transformations, stored or derived copies, and security-relevant sinks. Record source-visible limits and parallel paths to the same effect.
+Separately answer the crypto deposit gate: does any code read blockchain data (node RPC, chain SDK, indexer or explorer API, chain webhook, or a user-supplied transaction hash) and then credit a balance, mark an order or invoice paid, or release goods? Return each such reader-to-credit path with file:line, or state "no crypto deposit crediting path" with the files searched.
 Return repository-relative paths and line numbers. Be complete, but do not execute or send inputs.
 ```
 
@@ -86,6 +87,8 @@ The parent synthesizes `<output-dir>/architecture.md`, with a hard cap of about 
 Keep the assignment-level ordinary block, selected companion blocks, and excluded blocks with reasons in each ledger unit, not in `architecture.md`. This keeps the architecture cap valid for large runs and makes the exact hunter prompt map machine-checkable.
 
 Do not select a companion file merely because the language or dependency name appears. Select it because reconnaissance found the trust-sensitive boundary described by its `When to use this file` section. Do not exclude a visible boundary just because another agent will review a related class.
+
+`CRYPTO-DEPOSITS.md` has a hard gate. When Agent 1c reports a crypto deposit crediting path, select that companion for every such path; it is not optional. When Agent 1c reports none, skip it and record its blocks in `excluded_blocks` with the reason `no source-visible crypto deposit crediting path`.
 
 ## Deterministic coverage ledger
 

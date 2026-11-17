@@ -25,6 +25,8 @@ Use `confirmed` only when source evidence and bounded validation establish the f
 > **Data-isolation and lifecycle targets** (multi-tenant stores, caches/search, object links, analytics, export/backup, migration, deletion, retention, or restore): use [DATA-ISOLATION-AND-LIFECYCLE.md](DATA-ISOLATION-AND-LIFECYCLE.md).
 >
 > **Desktop, mobile, and local-IPC targets** (native apps, deep links, webview bridges, exported components, privileged helpers, local daemons, Unix sockets/XPC/Binder/D-Bus): use [DESKTOP-MOBILE-AND-LOCAL-IPC.md](DESKTOP-MOBILE-AND-LOCAL-IPC.md).
+>
+> **Crypto deposit targets** (exchange or wallet deposits, payment gateways, invoices or orders paid on-chain, bridges, custody inbound flows, or bots that confirm payment from a transaction hash or explorer link): use the asset-identity, execution-status, amount, event/recipient-binding, finality, and data-source classes in [CRYPTO-DEPOSITS.md](CRYPTO-DEPOSITS.md). Selection is mandatory when reconnaissance finds a crediting path and skipped otherwise; see its detection gate.
 
 **Injection** (subagent_type: `general`)
 Trace untrusted input from entry point to dangerous sink. What counts as a "dangerous sink" depends on the application:

@@ -16,6 +16,8 @@ This skill is guidance by default. Loading it does not authorize the complete au
 
 If the request could mean either mode, ask one focused question before creating files or starting the complete workflow.
 
+In both modes, first check whether the code under review credits a balance, order, or payment from blockchain data, using the detection gate in [CRYPTO-DEPOSITS.md](CRYPTO-DEPOSITS.md). If it does, apply that file to every crediting path. If it does not, skip that file.
+
 ## Platform terminology
 
 This skill is agent-neutral:
