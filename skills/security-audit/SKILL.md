@@ -163,6 +163,10 @@ Calibrate overall severity with these anchors:
 
 The high/medium discriminator: does the demonstrated result fully defeat an explicit control for an action with real consequences, or only weaken it? If you cannot state the concrete damage, the severity is lower than it feels.
 
+These are rarely above medium unless the record demonstrates more: missing headers or cookie flags, self-XSS, an open redirect without token leakage, enumeration that only confirms existence, an effect that needs admin, shell, or physical access the attacker would already hold, a session weakness that needs a victim secret the same finding does not obtain, and impact that depends on a chain of unproven steps.
+
+Before rating `high` or `critical`, confirm all of these, otherwise lower one level: the attacker position is obtainable without an unproven prior compromise; likelihood reflects the real privileges and complexity; impact is demonstrated, not asserted; no confirmed constraint limits exploitation; and reachability rests on evidence, not on an assumed deployment. Missing deployment evidence lowers certainty (`needs_validation`), never severity: do not treat "could not confirm it is exposed" as "internal-only".
+
 ### Recommend the smallest effective source fix
 
 For each confirmed finding, identify the invariant the code must enforce and the narrowest source change that enforces it at the last trusted decision point. Prefer specific repository-relative changes and regression tests over generic hardening advice. The audit describes fixes; it does not modify target source.

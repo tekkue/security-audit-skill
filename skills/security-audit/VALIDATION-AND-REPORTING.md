@@ -86,6 +86,14 @@ file separately:
 
 A verifier can promote `needs_validation` to `confirmed` only after independently establishing the complete path and bounded observed result. Demote proposed confirmation to `needs_validation` when a specific deployment or runtime fact remains unknown. Use `rejected` when source, local behavior, a visible control, missing meaningful impact, or an impossible prerequisite refutes the claim. `needs_validation` is never a parking place for a speculative idea.
 
+None of these refutes a claim on its own; each leaves the candidate open:
+
+- trust in a library, framework, or helper without checking that exact call, its arguments, and its output context;
+- a control that runs after the effect, or validates a value other than the one the sink consumes;
+- a control that can fail open: an exception path that allows, a caller-supplied flag or config, or an allowlist that is empty by default;
+- missing information, such as an unfound caller, an unknown deployment, or a build that would not run; record the exact gap as `needs_validation`;
+- internal, admin-only, or authenticated reachability, which lowers severity but does not disprove the boundary violation, unless that principal holds the authority by design.
+
 The parent checks that each verifier returned the same fingerprint unless it identified a genuinely different root cause. Merge corrections, record the decision in every linked coverage unit, and ensure there is one final record per fingerprint. Discard a malformed or prose-wrapped verifier result without repairing it; re-run that candidate with a fresh verifier when the budget permits, otherwise it remains an unvalidated ledger candidate under the incomplete-run rule.
 
 When verifier evidence updates a ledger check, set that check's `agent_id` to the verifier's canonical ID and list its nonempty repository-relative `reviewed_paths`. Keep the unit-level `reviewed_paths` equal to the union across checks. Use `method: "source"` with `artifact: null` for source-only review. Use `method: "local"` only with a file successfully promoted by trusted parent-side code below `agents/<check.agent_id>/artifacts/`. The unit retains its original assignment owner, so independently owned hunter and verifier checks can coexist. For a carried prior record's seeded `planned` unit there is no prior owner: the verifier that re-checks it becomes the unit's assignment owner, and its re-check is the unit's first check, moving the unit to `candidate` with the carried fingerprint.
